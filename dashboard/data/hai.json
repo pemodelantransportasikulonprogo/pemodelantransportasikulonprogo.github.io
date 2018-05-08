@@ -1,0 +1,110 @@
+{
+ "name": "Permintaan Penumpang",
+ "children": [
+  {
+   "name": "Sosial", "size": 691,
+   "children": [
+    {
+     "name": "Penyebaran Penduduk",
+     "children": [
+      {"name": "Rasio Jenis Kelamin", "size": 73,
+      "children": [
+        {"name": "< 94,9%", "size": 596},
+        {"name": "94,9% - 99,4%", "size":276},
+        {"name": "> 99,4%", "size": 128}
+      ]
+      },
+      {"name": "Rasio Kelompok Umur", 
+      "children":[
+        {"name": "< 77,1%", "size": 625},
+        {"name": "77,1% - 81%", "size": 238},
+        {"name": "> 81%", "size": 137}
+      ]
+      },
+      {"name": "Kepadatan Penduduk",
+      "children":[
+        {"name": "< 661 jiwa/km2", "size": 95},
+        {"name": "661 - 1185 jiwa/km2", "size": 250},
+        {"name": "> 1185 jiwa/km2", "size": 655}
+      ]
+      }
+     ]
+    },
+    {
+     "name": "Kegiatan Penduduk", "size":750,
+     "children": [
+      {"name": "Jumlah Fasilitas Umum", "size": 833,
+      "children":[
+        {"name": "< 63 buah", "size": 2},
+        {"name": "63 - 104 buah", "size":59},
+        {"name": "> 104 buah", "size": 939}
+      ]
+      },
+      {"name": "Jumlah Lokasi Wisata", "size": 167,
+      "children":[
+       {"name": "< 2 buah (1)"},
+       {"name": "2 - 4 buah (2)"},
+       {"name": "> 4 buah (3)"}
+      ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ekonomi", "size": 160,
+   "children": [
+    {
+     "name": "Pertanian Penduduk", "size": 1000,
+     "children": [
+      {"name": "Luas Lahan Panen", "size": 143,
+      "children":[
+        {"name": "< 218 Hektar (1)"},
+        {"name": "218 - 509 Hektar (2)"},
+        {"name": "> 509 Hektar (3)"}
+      ]
+      },
+      {"name": "Total Jumlah Produksi", "size": 857,
+      "children":[
+        {"name": "< 10184,8 Ton (1)"},
+        {"name": "10184,8 - 34751 Ton (2)"},
+        {"name": "> 34751 Ton (3)"}
+      ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Lingkungan", "size": 149,
+   "children": [
+    {
+     "name": "Tata Guna Lahan", "size": 972,
+     "children": [
+      {"name": "Pemukiman (1)"},
+      {"name": "Persawahan (2)"},
+      {"name": "Perkebunan (3)"},
+      {"name": "Semak Belukar/Tegalan (4)"}
+     ]
+    },
+	{
+     "name": "Jaringan Jalan", "size": 26,
+     "children": [
+      {"name": "Jalan Arteri (1)"},
+      {"name": "Jalan Kolektor (2)"},
+      {"name": "Jalan Lokal (3)"},
+      {"name": "Jalan Lingkungan (4)"}
+     ]
+    },
+	{
+     "name": "Kemiringan Lahan", "size": 2,
+     "children": [
+      {"name": "Datar (1)"},
+      {"name": "Perbukitan (2)"},
+      {"name": "Pegunungan (3)"}
+     ]
+    }
+   ]
+  }
+ ]
+}

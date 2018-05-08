@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Layers Control Tutorial - Leaflet</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="jquery-2.1.1.min.js"></script> 
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<script type="text/javascript" src="permintaan.js"></script>
+	<style>
+			.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }</style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		#map {
+			width: 800px;
+			height: 600px;
+		}
+	</style>
+
+	
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+	// load GeoJSON from an point file: terminal rencana
+	var rencana = L.layerGroup();
+
+	 $.getJSON("terminal_rencana.geojson",function(data){
+        var busIcon = L.icon({
+          iconUrl: 'bus.png',
+          iconSize: [20,20]
+        });
+        L.geoJson(data,{
+          pointToLayer: function(feature,latlng){
+            var marker = L.marker(latlng,{icon: busIcon});
+            marker.bindPopup(feature.properties.nama_termi + '<br/>' + 'Tipe Terminal: ' +feature.properties.tipe);
+            return marker;
+          }
+        }).addTo(rencana);
+      });
+
+	// load GeoJSON from an point file: terminal existing
+	var existing = L.layerGroup();
+
+	$.getJSON("terminal_existing.geojson",function(data){
+	var busIcon = L.icon({
+		iconUrl: 'bus.svg',
+		
+		iconSize: [15,15]
+	});
+	L.geoJson(data,{
+		pointToLayer: function(feature,latlng){
+		var marker = L.marker(latlng,{icon: busIcon});
+		marker.bindPopup(feature.properties.nama_termi + '<br/>' + 'Tipe Terminal: ' +feature.properties.tipe);
+		return marker;
+		}
+	}).addTo(existing);
+	});
+
+	// load GeoJSON from an poligon file: layanan < 10 menit
+	var layanan_10 = L.layerGroup();
+
+	$.getJSON("layanan_10.geojson",function(hoodData){
+      L.geoJson( hoodData  , {
+		style: {weight: 2, color: "#fff5f0", dashArray: '1', fillColor: "#fb6a4a", fillOpacity:1},
+          onEachFeature: function( feature, layer ){
+          layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>" + "Luas wilayah layanan: " + feature.properties.luas + " km2")
+        }
+      } 
+      
+      ).addTo(layanan_10);
+      });
+	
+		// load GeoJSON from an poligon file: layanan 10 - 20 menit
+		var layanan_1020 = L.layerGroup();
+
+		$.getJSON("layanan_1020.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {weight: 2, color: "#fff5f0", dashArray: '1', fillColor: "#ef3b2c", fillOpacity:1},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + "Luas wilayah layanan: " + feature.properties.luas + " km2")
+			}
+		} 
+		
+		).addTo(layanan_1020);
+		});
+
+		
+		// load GeoJSON from an poligon file: layanan 20 - 30 menit
+		var layanan_2030 = L.layerGroup();
+
+		$.getJSON("layanan_2030.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {weight: 2, color: "#fff5f0", dashArray: '1', fillColor: "#cb181d", fillOpacity:1},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>" + "Luas wilayah layanan: " + feature.properties.luas + " km2")
+			}
+		} 
+		
+		).addTo(layanan_2030);
+		});
+
+		// load GeoJSON from an poligon file: layanan > 30 menit
+		var layanan_30 = L.layerGroup();
+
+		$.getJSON("layanan_30.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {weight: 2, color: "#fff5f0", dashArray: '1', fillColor: "#67000d", fillOpacity:1},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>" + "Luas wilayah layanan: " + feature.properties.luas + " km2")
+			}
+		} 
+
+		).addTo(layanan_30);
+		});
+
+		// load GeoJSON from an line file: trayek 1
+		var trayek_1 = L.layerGroup();
+
+		$.getJSON("trayek_1.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {color: "#a50026"},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+			}
+		} 
+
+		).addTo(trayek_1);
+		});
+
+		// load GeoJSON from an line file: trayek 2
+		var trayek_2 = L.layerGroup();
+
+		$.getJSON("trayek_2.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {color: "#ae017e"},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+			}
+		} 
+
+		).addTo(trayek_2);
+		});
+
+		// load GeoJSON from an line file: trayek 3
+		var trayek_3 = L.layerGroup();
+
+		$.getJSON("trayek_3.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {color: "#54278f"},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+			}
+		} 
+
+		).addTo(trayek_3);
+		});
+
+		// load GeoJSON from an line file: trayek 4
+		var trayek_4 = L.layerGroup();
+
+		$.getJSON("trayek_4.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {color: "#1f78b4"},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+			}
+		} 
+
+		).addTo(trayek_4);
+		});
+
+		// load GeoJSON from an line file: trayek 5
+		var trayek_5 = L.layerGroup();
+
+		$.getJSON("trayek_5.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {color: "#e31a1c"},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+			}
+		} 
+
+		).addTo(trayek_5);
+		});
+
+		// load GeoJSON from an line file: trayek 6
+		var trayek_6 = L.layerGroup();
+
+		$.getJSON("trayek_6.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {color: "#6a3d9a"},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+			}
+		} 
+
+		).addTo(trayek_6);
+		});
+
+		// load GeoJSON from an line file: trayek 7
+		var trayek_7 = L.layerGroup();
+
+		$.getJSON("trayek_7.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {color: "#3f007d"},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+			}
+		} 
+
+		).addTo(trayek_7);
+		});
+
+		// load GeoJSON from an line file: trayek 8
+		var trayek_8 = L.layerGroup();
+
+		$.getJSON("trayek_8.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {color: "#a6d96a"},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+			}
+		} 
+
+		).addTo(trayek_8);
+		});
+
+		// load GeoJSON from an line file: trayek 9
+		var trayek_9 = L.layerGroup();
+
+		$.getJSON("trayek_9.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {color: "#66bd63"},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+			}
+		} 
+
+		).addTo(trayek_9);
+		});
+
+		// load GeoJSON from an line file: trayek 10
+		var trayek_10 = L.layerGroup();
+
+		$.getJSON("trayek_10.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {color: "#1a9850"},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+			}
+		} 
+
+		).addTo(trayek_10);
+		});
+
+		// load GeoJSON from an line file: trayek 11
+		var trayek_11 = L.layerGroup();
+
+		$.getJSON("trayek_11.geojson",function(hoodData){
+		L.geoJson( hoodData  , {
+			style: {color: "#006837"},
+			onEachFeature: function( feature, layer ){
+			layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+			}
+		} 
+
+		).addTo(trayek_11);
+		});
+
+	var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		mbUrl = 'https://api.mapbox.com/styles/v1/febrian/cjgkfxaze002j2rpitr27ol5r/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZmVicmlhbiIsImEiOiJfZ1RIZHNvIn0.KvHsniB5_zj_sYUsdwaWUg';
+
+	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
+		streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+
+	var map = L.map('map', {
+		center: [-7.799545, 110.156485],
+		zoom: 11,
+		layers: [grayscale, rencana, existing, layanan_10, layanan_1020, layanan_2030, layanan_30, trayek_1, trayek_2, trayek_3, trayek_4, trayek_5,
+		trayek_6, trayek_7, trayek_8, trayek_9, trayek_10, trayek_11]
+	});
+
+	var baseLayers = {
+		"Indeks Permintaan": grayscale
+
+	};
+
+	var overlays = {
+		"Terminal rencana": rencana,
+		"Terminal existing": existing,
+		"Trayek satu": trayek_1,	
+		"Trayek dua": trayek_2,
+		"Trayek tiga": trayek_3,
+		"Trayek empat": trayek_4,
+		"Trayek lima": trayek_5,	
+		"Trayek enam": trayek_6,
+		"Trayek tujuh": trayek_7,
+		"Trayek delapan": trayek_8,
+		"Trayek sembilan": trayek_9,	
+		"Trayek sepuluh": trayek_10,
+		"Trayek sebelas": trayek_11,
+		"Layanan <10 Menit": layanan_10,
+		"Layanan 10-20 Menit": layanan_1020,
+		"Layanan 20-30 Menit": layanan_2030,
+		"Layanan >30 Menit": layanan_30
+	};
+
+	L.control.layers(baseLayers, overlays).addTo(map);
+
+function getColor(d) {
+		return d > 4.9810 ? '#e31a1c' :
+				d > 1.9064  ? '#fd8d3c' :
+				d > 1.2980  ? '#fecc5c' :													
+							'#ffffb2';
+	}
+
+	function style(feature) {
+		return {
+			weight: 2,
+			opacity: 1,
+			color: 'white',
+			dashArray: '3',
+			fillOpacity: 0.7,
+			fillColor: getColor(feature.properties.density)
+		};
+	}
+
+	function highlightFeature(e) {
+		var layer = e.target;
+
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature.properties);
+	}
+
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+	}
+
+	geojson = L.geoJson(permintaandata, {
+		style: style,
+		onEachFeature: function( feature, layer ){
+      layer.bindPopup( "<strong>" + 'Desa ' + feature.properties.Desa + "</strong><br/>" + 'Kecamatan: ' + feature.properties.Kecamatan + '<br/>' + 'Klasifikasi: '+ feature.properties.Klasifikas )
+    }
+	}).addTo(map);
+
+  var legend = L.control({position: 'bottomleft'});
+
+legend.onAdd = function (map) {
+
+  var div = L.DomUtil.create('div', 'info legend'),
+    grades = [0.7063, 1.2980, 1.9064, 4.9800],
+    labels = [],
+    from, to;
+
+  for (var i = 0; i < grades.length; i++) {
+    from = grades[i];
+    to = grades[i + 1];
+
+    labels.push(
+      'Indeks Permintaan: ' + '</br>'+'<i style="background:' + getColor(from + 0.5) + '"></i> ' +
+      from + (to ? '&ndash;' + to : '+'));
+  }
+
+  div.innerHTML = labels.join('<br>');
+  return div;
+};
+
+legend.addTo(map);
+
+</script>
+
+
+
+</body>
+</html>

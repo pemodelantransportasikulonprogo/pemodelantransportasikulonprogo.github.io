@@ -1,0 +1,31 @@
+      body {
+          font-family: Sans-serif;
+          font-size: 11px;
+      }
+
+      .slice {
+          cursor: pointer;
+      }
+
+      .slice .main-arc {
+          stroke: #fff;
+          stroke-width: 1px;
+      }
+
+      .slice .hidden-arc {
+          fill: none;
+      }
+
+      .slice text {
+          pointer-events: none;
+          dominant-baseline: middle;
+          text-anchor: middle;
+      }
+
+      #treebie div {
+        display: inline-block;
+        background: #4285F4;
+        width: 200px;
+        height: 300px;
+        margin-right: 3px;
+      }

@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "terminal_rencana",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "OBJECTID_1": 1, "OBJECTID": 1, "nama_termi": "Rencana Terminal Samigaluh", "tipe": "Tipe C", "koord_y": 9151613.8403999992, "koord_x": 404726.6078 }, "geometry": { "type": "Point", "coordinates": [ 110.136147344000051, -7.674288691999948 ] } },
+{ "type": "Feature", "properties": { "OBJECTID_1": 4, "OBJECTID": 4, "nama_termi": "Rencana Terminal Panjatan", "tipe": "Tipe C", "koord_y": 9125949.6283999998, "koord_x": 408316.6772 }, "geometry": { "type": "Point", "coordinates": [ 110.168238548000033, -7.906477571999972 ] } },
+{ "type": "Feature", "properties": { "OBJECTID_1": 3, "OBJECTID": 3, "nama_termi": "Rencana Terminal Girimulyo", "tipe": "Tipe C", "koord_y": 9143932.0651999991, "koord_x": 405818.0929 }, "geometry": { "type": "Point", "coordinates": [ 110.145903908000037, -7.7437875599999 ] } },
+{ "type": "Feature", "properties": { "OBJECTID_1": 6, "OBJECTID": 6, "nama_termi": "Rencana Terminal Pengasih", "tipe": "Tipe C", "koord_y": 9132172.0963000003, "koord_x": 408260.2861 }, "geometry": { "type": "Point", "coordinates": [ 110.167839381000078, -7.850196530999938 ] } },
+{ "type": "Feature", "properties": { "OBJECTID_1": 5, "OBJECTID": 5, "nama_termi": "Rencana Terminal Lendah", "tipe": "Tipe C", "koord_y": 9126022.7566, "koord_x": 418895.932 }, "geometry": { "type": "Point", "coordinates": [ 110.264210151000043, -7.905996205999941 ] } },
+{ "type": "Feature", "properties": { "OBJECTID_1": 7, "OBJECTID": 7, "nama_termi": "Rencana Terminal Bandara", "tipe": "Tipe C", "koord_y": 9127161.5076000001, "koord_x": 396367.7797 }, "geometry": { "type": "Point", "coordinates": [ 110.059871, -7.895287 ] } },
+{ "type": "Feature", "properties": { "OBJECTID_1": 2, "OBJECTID": 2, "nama_termi": "Rencana Terminal Kokap", "tipe": "Tipe C", "koord_y": 9130156.2609000001, "koord_x": 396182.5923 }, "geometry": { "type": "Point", "coordinates": [ 110.058252409000033, -7.868197546999966 ] } }
+]
+}

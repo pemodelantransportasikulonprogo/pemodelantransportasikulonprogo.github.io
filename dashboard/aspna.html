@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Pemodelan Trasnportasi </title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" type="text/css" href="./css/styleradar.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect. -->
+  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+  <script src="./map/jquery-2.1.1.min.js"></script> 
+  <script type="text/javascript" src="./map/permintaan.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="./data/Radar.js"></script>
+
+
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+        <style>
+          .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }</style>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+    
+    
+      <style>
+        html, body {
+          height: 100%;
+          margin: 0;
+        }
+        #map {
+          width: 1000px;
+          height: 600px;
+        }
+      </style>
+    
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <header class="main-header">
+
+    <!-- Logo -->
+    <a class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>T</b>o<b>C</b></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Table of Contents</b></span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          
+          <!-- Notifications Menu -->
+          
+          <!-- Tasks Menu -->
+          <li class="dropdown tasks-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            </a>
+            </li>
+          <!-- User Account Menu -->
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a href="../index.html"><i class="fa fa-home"></i> <span>Pemodelan Transportasi Kab. Kulon Progo</span></a>
+            <!-- The user image in the navbar-->
+              
+            <ul class="dropdown-menu">
+              <!-- The user image in the menu -->
+              
+                
+
+              <!-- Menu Body -->
+              <!-- Menu Footer-->
+              </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-info"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <a href="#"><i class="fa fa-bus"></i></a>
+          </div>
+        <div class="pull-left info">
+          <p>Layer Pemodelan</p>
+          <!-- Status -->
+          </div>
+      </div>
+     
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+
+        <!-- Optionally, you can add icons to the links -->
+        <li><a href="aahp.html"><i class="fa fa-sitemap"></i> <span><i>Analytical Hierarchy Process</i></span></a></li>
+        <li><a href="appp.html"><i class="fa fa-users"></i> <span>Permintaan Penumpang</span></a></li>
+        <li class="active"><a href="aspna.html"><i class="fa fa-road"></i> <span>Jaringan Trayek</span></a></li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Spatial Network Analysis
+        <small>Menampilkan hasil pengolahan analisis jaringan berbasis spasial</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Spatial Network Analysis</a></li>
+        <li class="active">Di sini</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+      <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
+        <div class="row">
+          <!-- Left col -->
+          <section class="col-lg-12 connectedSortable">
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Jaringan Trayek Angkutan Umum</h3>
+  
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+              <div class="box-body">
+                <div id='map'>
+              </div>
+              <!-- /.box-body -->
+            </div>
+          </section>
+
+          <section class="col-lg-12 connectedSortable">
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Wilayah Pelayanan Angkutan Umum</h3>
+  
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+              <div class="box-body" id="body">
+                            
+                <div id="chart" ></div>                       
+                
+              </div>
+              <!-- /.box-body -->
+            </div>
+          </section>
+        </div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-info"></i></a></li>     
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane active" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading">Petunjuk Penggunaan</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:;">
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Analisis Jaringan</h4>
+
+                <p><h5>Beri atau hilangkan centang untuk mengatur tampilan pemodelan terminal, jaringan trayek dan wilayah pelayanan. Grafik radar menampilkan visualisasi data pemodelan angkutan umum dengan pilihan kelas wilayah layanan.</h5></p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+      </div>
+      <!-- /.tab-pane -->
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <!-- /.tab-pane -->
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <form method="post">
+          <h3 class="control-sidebar-heading">General Settings</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Report panel usage
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+            <p>
+              Some information about this general settings option
+            </p>
+          </div>
+          <!-- /.form-group -->
+        </form>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
+
+  <script>
+    $(function () {
+
+          // load GeoJSON from an point file: terminal rencana
+          var rencana = L.layerGroup();
+
+          $.getJSON("./map/terminal_rencana.geojson",function(data){
+              var busIcon = L.icon({
+                iconUrl: './map/bus.png',
+                iconSize: [20,20]
+              });
+              L.geoJson(data,{
+                pointToLayer: function(feature,latlng){
+                  var marker = L.marker(latlng,{icon: busIcon});
+                  marker.bindPopup(feature.properties.nama_termi + '<br/>' + 'Tipe Terminal: ' +feature.properties.tipe);
+                  return marker;
+                }
+              }).addTo(rencana);
+            });
+
+          // load GeoJSON from an point file: terminal existing
+          var existing = L.layerGroup();
+
+          $.getJSON("./map/terminal_existing.geojson",function(data){
+          var busIcon = L.icon({
+          iconUrl: './map/bus.svg',
+          
+          iconSize: [15,15]
+          });
+          L.geoJson(data,{
+          pointToLayer: function(feature,latlng){
+          var marker = L.marker(latlng,{icon: busIcon});
+          marker.bindPopup(feature.properties.nama_termi + '<br/>' + 'Tipe Terminal: ' +feature.properties.tipe);
+          return marker;
+          }
+          }).addTo(existing);
+          });
+
+          // load GeoJSON from an poligon file: layanan < 10 menit
+          var layanan_10 = L.layerGroup();
+
+          $.getJSON("./map/layanan_10.geojson",function(hoodData){
+            L.geoJson( hoodData  , {
+          style: {weight: 2, color: "#fff5f0", dashArray: '1', fillColor: "#fb6a4a", fillOpacity:1},
+                onEachFeature: function( feature, layer ){
+                layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>" + "Luas wilayah layanan: " + feature.properties.luas + " km2")
+              }
+            } 
+            
+            ).addTo(layanan_10);
+            });
+
+          // load GeoJSON from an poligon file: layanan 10 - 20 menit
+          var layanan_1020 = L.layerGroup();
+
+          $.getJSON("./map/layanan_1020.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {weight: 2, color: "#fff5f0", dashArray: '1', fillColor: "#ef3b2c", fillOpacity:1},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + "Luas wilayah layanan: " + feature.properties.luas + " km2")
+            }
+          } 
+          
+          ).addTo(layanan_1020);
+          });
+
+          
+          // load GeoJSON from an poligon file: layanan 20 - 30 menit
+          var layanan_2030 = L.layerGroup();
+
+          $.getJSON("./map/layanan_2030.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {weight: 2, color: "#fff5f0", dashArray: '1', fillColor: "#cb181d", fillOpacity:1},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>" + "Luas wilayah layanan: " + feature.properties.luas + " km2")
+            }
+          } 
+          
+          ).addTo(layanan_2030);
+          });
+
+          // load GeoJSON from an poligon file: layanan > 30 menit
+          var layanan_30 = L.layerGroup();
+
+          $.getJSON("./map/layanan_30.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {weight: 2, color: "#fff5f0", dashArray: '1', fillColor: "#67000d", fillOpacity:1},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>" + "Luas wilayah layanan: " + feature.properties.luas + " km2")
+            }
+          } 
+
+          ).addTo(layanan_30);
+          });
+
+          // load GeoJSON from an line file: trayek 1
+          var trayek_1 = L.layerGroup();
+
+          $.getJSON("./map/trayek_1.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {color: "#a50026"},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+            }
+          } 
+
+          ).addTo(trayek_1);
+          });
+
+          // load GeoJSON from an line file: trayek 2
+          var trayek_2 = L.layerGroup();
+
+          $.getJSON("./map/trayek_2.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {color: "#ae017e"},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+            }
+          } 
+
+          ).addTo(trayek_2);
+          });
+
+          // load GeoJSON from an line file: trayek 3
+          var trayek_3 = L.layerGroup();
+
+          $.getJSON("./map/trayek_3.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {color: "#54278f"},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+            }
+          } 
+
+          ).addTo(trayek_3);
+          });
+
+          // load GeoJSON from an line file: trayek 4
+          var trayek_4 = L.layerGroup();
+
+          $.getJSON("./map/trayek_4.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {color: "#1f78b4"},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+            }
+          } 
+
+          ).addTo(trayek_4);
+          });
+
+          // load GeoJSON from an line file: trayek 5
+          var trayek_5 = L.layerGroup();
+
+          $.getJSON("./map/trayek_5.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {color: "#e31a1c"},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+            }
+          } 
+
+          ).addTo(trayek_5);
+          });
+
+          // load GeoJSON from an line file: trayek 6
+          var trayek_6 = L.layerGroup();
+
+          $.getJSON("./map/trayek_6.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {color: "#6a3d9a"},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+            }
+          } 
+
+          ).addTo(trayek_6);
+          });
+
+          // load GeoJSON from an line file: trayek 7
+          var trayek_7 = L.layerGroup();
+
+          $.getJSON("./map/trayek_7.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {color: "#3f007d"},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+            }
+          } 
+
+          ).addTo(trayek_7);
+          });
+
+          // load GeoJSON from an line file: trayek 8
+          var trayek_8 = L.layerGroup();
+
+          $.getJSON("./map/trayek_8.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {color: "#a6d96a"},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+            }
+          } 
+
+          ).addTo(trayek_8);
+          });
+
+          // load GeoJSON from an line file: trayek 9
+          var trayek_9 = L.layerGroup();
+
+          $.getJSON("./map/trayek_9.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {color: "#66bd63"},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+            }
+          } 
+
+          ).addTo(trayek_9);
+          });
+
+          // load GeoJSON from an line file: trayek 10
+          var trayek_10 = L.layerGroup();
+
+          $.getJSON("./map/trayek_10.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {color: "#1a9850"},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+            }
+          } 
+
+          ).addTo(trayek_10);
+          });
+
+          // load GeoJSON from an line file: trayek 11
+          var trayek_11 = L.layerGroup();
+
+          $.getJSON("./map/trayek_11.geojson",function(hoodData){
+          L.geoJson( hoodData  , {
+            style: {color: "#006837"},
+            onEachFeature: function( feature, layer ){
+            layer.bindPopup("<strong>" + feature.properties.no_trayek + "</strong><br/>" + feature.properties.Name + '</br>' + 'Panjang: ' + feature.properties.panjang + ' km' + '</br>' + 'Estimasi waktu: ' + feature.properties.Total_Minu + ' menit')
+            }
+          } 
+
+          ).addTo(trayek_11);
+          });
+
+          var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+          mbUrl = 'https://api.mapbox.com/styles/v1/febrian/cjgkfxaze002j2rpitr27ol5r/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZmVicmlhbiIsImEiOiJfZ1RIZHNvIn0.KvHsniB5_zj_sYUsdwaWUg';
+
+          var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
+          streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+
+          var map = L.map('map', {
+          center: [-7.799545, 110.156485],
+          zoom: 11,
+          layers: [grayscale, rencana, existing, layanan_10, layanan_1020, layanan_2030, layanan_30, trayek_1, trayek_2, trayek_3, trayek_4, trayek_5,
+          trayek_6, trayek_7, trayek_8, trayek_9, trayek_10, trayek_11]
+          });
+
+          var baseLayers = {
+          "Indeks Permintaan": grayscale
+
+          };
+
+          var overlays = {
+          "Terminal rencana": rencana,
+          "Terminal existing": existing,
+          "Trayek satu": trayek_1,	
+          "Trayek dua": trayek_2,
+          "Trayek tiga": trayek_3,
+          "Trayek empat": trayek_4,
+          "Trayek lima": trayek_5,	
+          "Trayek enam": trayek_6,
+          "Trayek tujuh": trayek_7,
+          "Trayek delapan": trayek_8,
+          "Trayek sembilan": trayek_9,	
+          "Trayek sepuluh": trayek_10,
+          "Trayek sebelas": trayek_11,
+          "Layanan <10 Menit": layanan_10,
+          "Layanan 10-20 Menit": layanan_1020,
+          "Layanan 20-30 Menit": layanan_2030,
+          "Layanan >30 Menit": layanan_30
+          };
+
+          L.control.layers(baseLayers, overlays).addTo(map);
+
+          function getColor(d) {
+          return d > 4.9810 ? '#e31a1c' :
+              d > 1.9064  ? '#fd8d3c' :
+              d > 1.2980  ? '#fecc5c' :													
+                    '#ffffb2';
+          }
+
+          function style(feature) {
+          return {
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.7,
+            fillColor: getColor(feature.properties.density)
+          };
+          }
+
+          function highlightFeature(e) {
+          var layer = e.target;
+
+          layer.setStyle({
+            weight: 5,
+            color: '#666',
+            dashArray: '',
+            fillOpacity: 0.7
+          });
+
+          if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+          }
+
+          info.update(layer.feature.properties);
+          }
+
+          var geojson;
+
+          function resetHighlight(e) {
+          geojson.resetStyle(e.target);
+          info.update();
+          }
+
+          function zoomToFeature(e) {
+          map.fitBounds(e.target.getBounds());
+          }
+
+          function onEachFeature(feature, layer) {
+          layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: zoomToFeature
+          });
+          }
+
+          geojson = L.geoJson(permintaandata, {
+          style: style,
+          onEachFeature: function( feature, layer ){
+            layer.bindPopup( "<strong>" + 'Desa ' + feature.properties.Desa + "</strong><br/>" + 'Kecamatan: ' + feature.properties.Kecamatan + '<br/>' + 'Klasifikasi: '+ feature.properties.Klasifikas )
+          }
+          }).addTo(map);
+
+          var legend = L.control({position: 'bottomleft'});
+
+          legend.onAdd = function (map) {
+
+          var div = L.DomUtil.create('div', 'info legend'),
+          grades = [0.7063, 1.2980, 1.9064, 4.9800],
+          labels = [],
+          from, to;
+
+          for (var i = 0; i < grades.length; i++) {
+          from = grades[i];
+          to = grades[i + 1];
+
+          labels.push(
+            'Indeks Permintaan: ' + '</br>'+'<i style="background:' + getColor(from + 0.5) + '"></i> ' +
+            from + (to ? '&ndash;' + to : '+'));
+          }
+
+          div.innerHTML = labels.join('<br>');
+          return div;
+          };
+
+          legend.addTo(map);
+    })
+
+</script>
+<script>
+  $(function () {
+            /* ChartJS
+            * -------
+            * Here we will create a few charts using ChartJS
+            */
+        
+            //--------------
+            //- PERMINTAAN PENUMPANG -
+            //--------------
+
+            var w = 500,
+              h = 500;
+
+            var colorscale = d3.scale.category10();
+
+            //Legend titles
+            var LegendOptions = ['< 10 menit','10 - 20 menit','20 - 30 menit','> 30 menit'];
+
+            //Data
+            var d = [
+                  [
+                  {axis:"Jumlah penduduk",value:0.384},
+                  {axis:"Luas wilayah layanan",value:0.170},
+                  {axis:"Kepadatan penduduk",value:0.439},
+                  {axis:"Kepadatan fasilitas umum",value:0.556},			
+                  {axis:"Prosentase pemukiman",value:0.236},
+                  {axis:"Prosentase persawahan",value:0.347},
+                  {axis:"Prosentase perkebunan",value:0.258},
+                  {axis:"Prosentase semak belukar/tegalan",value:0.153}
+                  ],[
+                  {axis:"Jumlah penduduk",value:0.122},
+                  {axis:"Luas wilayah layanan",value:0.480},
+                  {axis:"Kepadatan penduduk",value:0.049},
+                  {axis:"Kepadatan fasilitas umum",value:0.170},			
+                  {axis:"Prosentase pemukiman",value:0.243},
+                  {axis:"Prosentase persawahan",value:0.267},
+                  {axis:"Prosentase perkebunan",value:0.273},
+                  {axis:"Prosentase semak belukar/tegalan",value:0.212}		
+                  ],
+                  [
+                  {axis:"Jumlah penduduk",value:0.381},
+                  {axis:"Luas wilayah layanan",value:0.244},
+                  {axis:"Kepadatan penduduk",value:0.305},
+                  {axis:"Kepadatan fasilitas umum",value:0.118},			
+                  {axis:"Prosentase pemukiman",value:0.270},
+                  {axis:"Prosentase persawahan",value:0.208},
+                  {axis:"Prosentase perkebunan",value:0.242},
+                  {axis:"Prosentase semak belukar/tegalan",value:0.271}			
+                  ],
+                [
+                  {axis:"Jumlah penduduk",value:0.113},
+                  {axis:"Luas wilayah layanan",value:0.106},
+                  {axis:"Kepadatan penduduk",value:0.207},
+                  {axis:"Kepadatan fasilitas umum",value:0.156},			
+                  {axis:"Prosentase pemukiman",value:0.250},
+                  {axis:"Prosentase persawahan",value:0.178},
+                  {axis:"Prosentase perkebunan",value:0.227},
+                  {axis:"Prosentase semak belukar/tegalan",value:0.365}			
+                  ]			  
+                ];
+
+            //Options for the Radar chart, other than default
+            var mycfg = {
+              w: w,
+              h: h,
+              maxValue: 0.6,
+              levels: 6,
+              ExtraWidthX: 300
+            }
+
+            //Call function to draw the Radar chart
+            //Will expect that data is in %'s
+            RadarChart.draw("#chart", d, mycfg);
+
+            ////////////////////////////////////////////
+            /////////// Initiate legend ////////////////
+            ////////////////////////////////////////////
+
+            var svg = d3.select('#body')
+              .selectAll('svg')
+              .append('svg')
+              .attr("width", w+300)
+              .attr("height", h)
+
+            //Create the title for the legend
+            var text = svg.append("text")
+              .attr("class", "title")
+              .attr('transform', 'translate(90,0)') 
+              .attr("x", w + 20)
+              .attr("y", 10)
+              .attr("font-size", "12px")
+              .attr("fill", "#404040")
+              .text("Kelas pelayanan");
+                
+            //Initiate Legend	
+            var legend = svg.append("g")
+              .attr("class", "legend")
+              .attr("height", 100)
+              .attr("width", 200)
+              .attr('transform', 'translate(90,20)') 
+              ;
+              //Create colour squares
+              legend.selectAll('rect')
+                .data(LegendOptions)
+                .enter()
+                .append("rect")
+                .attr("x", w + 30)
+                .attr("y", function(d, i){ return i * 20;})
+                .attr("width", 10)
+                .attr("height", 10)
+                .style("fill", function(d, i){ return colorscale(i);})
+                ;
+              //Create text next to squares
+              legend.selectAll('text')
+                .data(LegendOptions)
+                .enter()
+                .append("text")
+                .attr("x", w + 50 )
+                .attr("y", function(d, i){ return i * 20 + 9;})
+                .attr("font-size", "11px")
+                .attr("fill", "#737373")
+                .text(function(d) { return d; })
+                ;	
+
+  })
+  </script>
+</body>
+</html>

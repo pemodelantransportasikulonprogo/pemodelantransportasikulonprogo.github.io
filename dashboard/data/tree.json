@@ -1,0 +1,110 @@
+{
+ "name": "Permintaan Penumpang",
+ "children": [
+  {
+   "name": "Sosial (1)",
+   "children": [
+    {
+     "name": "Penyebaran Penduduk (1)",
+     "children": [
+      {"name": "Rasio Jenis Kelamin (1)",
+      "children": [
+        {"name": "< 94,9% (1)"},
+        {"name": "94,9% - 99,4% (2)"},
+        {"name": "> 99,4% (3)"}
+      ]
+      },
+      {"name": "Rasio Kelompok Umur (2)",
+      "children":[
+        {"name": "< 77,1% (1)"},
+        {"name": "77,1% - 81% (2)"},
+        {"name": "> 81% (3)"}
+      ]
+      },
+      {"name": "Kepadatan Penduduk (3)",
+      "children":[
+        {"name": "< 661 jiwa/km2 (1)"},
+        {"name": "661 - 1185 jiwa/km2 (2)"},
+        {"name": "> 1185 jiwa/km2 (3)"}
+      ]
+      }
+     ]
+    },
+    {
+     "name": "Kegiatan Penduduk (2)",
+     "children": [
+      {"name": "Jumlah Fasilitas Umum",
+      "children":[
+        {"name": "< 63 buah (1)"},
+        {"name": "63 - 104 buah (2)"},
+        {"name": "> 104 buah (3)"}
+      ]
+      },
+      {"name": "Jumlah Lokasi Wisata",
+      "children":[
+       {"name": "< 2 buah (1)"},
+       {"name": "2 - 4 buah (2)"},
+       {"name": "> 4 buah (3)"}
+      ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ekonomi (2)",
+   "children": [
+    {
+     "name": "Pertanian Penduduk",
+     "children": [
+      {"name": "Luas Lahan Panen (1)",
+      "children":[
+        {"name": "< 218 Hektar (1)"},
+        {"name": "218 - 509 Hektar (2)"},
+        {"name": "> 509 Hektar (3)"}
+      ]
+      },
+      {"name": "Total Jumlah Produksi (2)",
+      "children":[
+        {"name": "< 10184,8 Ton (1)"},
+        {"name": "10184,8 - 34751 Ton (2)"},
+        {"name": "> 34751 Ton (3)"}
+      ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Lingkungan (3)",
+   "children": [
+    {
+     "name": "Tata Guna Lahan (1)",
+     "children": [
+      {"name": "Pemukiman (1)"},
+      {"name": "Persawahan (2)"},
+      {"name": "Perkebunan (3)"},
+      {"name": "Semak Belukar/Tegalan (4)"}
+     ]
+    },
+	{
+     "name": "Jaringan Jalan (2)",
+     "children": [
+      {"name": "Jalan Arteri (1)"},
+      {"name": "Jalan Kolektor (2)"},
+      {"name": "Jalan Lokal (3)"},
+      {"name": "Jalan Lingkungan (4)"}
+     ]
+    },
+	{
+     "name": "Kemiringan Lahan (3)",
+     "children": [
+      {"name": "Datar (1)"},
+      {"name": "Perbukitan (2)"},
+      {"name": "Pegunungan (3)"}
+     ]
+    }
+   ]
+  }
+ ]
+}

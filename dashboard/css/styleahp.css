@@ -1,0 +1,14 @@
+        select {
+            display: block;
+        }
+        .bar {
+            fill: rgb(10, 247, 247);
+            opacity: 0.8;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
