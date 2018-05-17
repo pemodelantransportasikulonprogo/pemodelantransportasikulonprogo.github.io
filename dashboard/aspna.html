@@ -347,7 +347,7 @@ desired effect
 
           $.getJSON("./map/layanan_10.geojson",function(hoodData){
             L.geoJson( hoodData  , {
-          style: {weight: 2, color: "#fff5f0", dashArray: '1', fillColor: "#74c476", fillOpacity:0.5},
+          style: {weight: 2, color: "#fff5f0", dashArray: '1', fillColor: "#74c476", fillOpacity:1},
                 onEachFeature: function( feature, layer ){
                 layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>" + "Luas wilayah layanan: " + feature.properties.luas + " km2")
               }
