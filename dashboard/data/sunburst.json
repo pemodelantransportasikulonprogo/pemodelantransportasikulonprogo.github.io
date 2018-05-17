@@ -1,0 +1,110 @@
+{
+ "name": "Permintaan Penumpang",
+ "children": [
+  {
+   "name": "Sosial",
+   "children": [
+    {
+     "name": "Penyebaran Penduduk",
+     "children": [
+      {"name": "Rasio Jenis Kelamin (laki-laki dibandingkan perempuan)",
+      "children": [
+        {"name": "< 94,9%", "size": 751.6007},
+        {"name": "94,9% - 99,4%", "size":348.0567},
+        {"name": "> 99,4%", "size": 161.4176}
+      ]
+      },
+      {"name": "Rasio Kelompok Umur (>15 tahun dibandingkan <15 tahun)", 
+      "children":[
+        {"name": "< 77,1%", "size": 4610.265625},
+        {"name": "77,1% - 81%", "size": 1755.58915},
+        {"name": "> 81%", "size": 1010.570225}
+      ]
+      },
+      {"name": "Kepadatan Penduduk",
+      "children":[
+        {"name": "< 661 jiwa/km2", "size": 820.5625},
+        {"name": "661 - 1185 jiwa/km2", "size": 2159.375},
+        {"name": "> 1185 jiwa/km2", "size": 5657.5625}
+      ]
+      }
+     ]
+    },
+    {
+     "name": "Kegiatan Penduduk",
+     "children": [
+      {"name": "Jumlah Fasilitas Umum",
+      "children":[
+        {"name": "< 63 buah", "size": 86.34045},
+        {"name": "63 - 104 buah", "size": 2547.043275},
+        {"name": "> 104 buah", "size": 40536.84128}
+      ]
+      },
+      {"name": "Jumlah Lokasi Wisata",
+      "children":[
+       {"name": "< 2 buah", "size": 1410.728325},
+       {"name": "2 - 4 buah", "size": 2570.468175},
+       {"name": "> 4 buah", "size": 4673.5785}
+      ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ekonomi",
+   "children": [
+    {
+     "name": "Pertanian Penduduk",
+     "children": [
+      {"name": "Luas Lahan Panen",
+      "children":[
+        {"name": "< 218 Hektar", "size": 217.36},
+        {"name": "218 - 509 Hektar", "size": 572},
+        {"name": "> 509 Hektar", "size": 1498.64}
+      ]
+      },
+      {"name": "Total Jumlah Produksi",
+      "children":[
+        {"name": "< 10184,8 Ton", "size": 1302.64},
+        {"name": "10184,8 - 34751 Ton", "size": 3428},
+        {"name": "> 34751 Ton", "size": 8981.36}
+      ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Lingkungan",
+   "children": [
+    {
+     "name": "Tata Guna Lahan",
+     "children": [
+      {"name": "Pemukiman", "size": 9413.82},
+      {"name": "Persawahan", "size": 3026.9052},
+      {"name": "Perkebunan", "size": 1274.4864},
+      {"name": "Semak Belukar/Tegalan", "size": 767.5884}
+     ]
+    },
+	{
+     "name": "Jaringan Jalan",
+     "children": [
+      {"name": "Jalan Arteri", "size": 43.7762},
+      {"name": "Jalan Kolektor", "size": 162.3206},
+      {"name": "Jalan Lokal", "size": 154.96},
+      {"name": "Jalan Lingkungan", "size": 26.3432}
+     ]
+    },
+	{
+     "name": "Kemiringan Lahan",
+     "children": [
+      {"name": "Datar", "size": 21.009},
+      {"name": "Perbukitan", "size": 6.2878},
+      {"name": "Pegunungan", "size": 2.5032}
+     ]
+    }
+   ]
+  }
+ ]
+}
